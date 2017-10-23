@@ -2,7 +2,8 @@ void setup()
 {
   //size(600, 600);
   fullScreen();
-  board = new ColourBoard(200);
+  board = new ColourBoard(400);
+  frameRate(20);
 }
 
 ColourBoard board;
@@ -18,6 +19,18 @@ void keyPressed()
   if (key == ' ')
   {
     board.reset();
+  }
+  if (key == '1')
+  {
+    board.randomise();
+  }
+  if (key == '2')
+  {
+    board.lines();
+  }
+  if (key == '3')
+  {
+    board.lines1();
   }
 }
 

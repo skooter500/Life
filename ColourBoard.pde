@@ -13,7 +13,25 @@ class ColourBoard
     current = new color[size][size];
     next = new color[size][size];
     cellSize = width / (float) size;
+    colorMode(HSB, 255);
     //randomise();
+  }
+  
+  void lines()
+  {
+    for(int row = 0 ; row < size ; row ++)
+    {
+      current[row][(int) (size * 0.2)] = RandomColor();
+      current[row][(int) (size * 0.8)] = RandomColor();
+    }
+  }
+  void lines1()
+  {
+    for(int col = 0 ; col < size ; col ++)
+    {
+      current[(int) (size * 0.2)][col] = RandomColor();
+      current[(int) (size * 0.8)][col] = RandomColor();
+    }
   }
   
   void render()
@@ -56,7 +74,8 @@ class ColourBoard
   
   color RandomColor()
   {
-    return color(random(0, 255), random(0, 255), random(0, 255));
+    //return color(random(0, 255), random(0, 255), random(0, 255));
+    return color(random(100, 200), 255, 255);
   }
   
   // Methods for you guys to implement! 
@@ -154,20 +173,23 @@ class ColourBoard
   color AverageAround(int row, int col)
   {
     float red = 0, green = 0, blue = 0;
-    
+    float hue = 0;
     for(int r = row - 1 ; r <= row + 1 ; r ++)
     {
       for(int c = col - 1 ; c <= col + 1 ; c ++)
       {
         if (isAlive(r, c))
         {
-          red += red(current[r][c]);
+          hue += hue(current[r][c]);
+          /*red += red(current[r][c]);
           green += green(current[r][c]);
           blue += blue(current[r][c]);
+          */
         }
       }
     }
-    return color(red / 3.0, green / 3.0, blue / 3.0);
+    //return color(red / 3.0, green / 3.0, blue / 3.0);
+    return color(hue / 3.0, 255, 255);
   }
   
 }
