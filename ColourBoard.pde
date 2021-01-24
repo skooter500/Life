@@ -1,8 +1,8 @@
 class ColorBoard
 {
   
-  int boardWidth = 400;
-  int boardHeight = 400;
+  int boardWidth = 600;
+  int boardHeight = 600;
   float cellWidth;
   float[][] board = new float[boardHeight][boardWidth];
   float[][] nextBoard  = new float[boardHeight][boardWidth];
@@ -20,7 +20,7 @@ class ColorBoard
     for(int row = 0 ; row < boardWidth ; row ++)
     {
       board[row][(int) (boardWidth * 0.2)] = random(255);
-      board[row][(int) (boardWidth * 0.8)] = random(255);
+      //board[row][(int) (boardWidth * 0.8)] = random(255);
     }
   }
   void lines1()
@@ -37,22 +37,7 @@ class ColorBoard
     this.generationMax = generationMax;
     initialize();
   }
-  
-  void restart()
-  {
-    switch(pattern)
-    {
-      case 0:
-        crossShape();
-        break;
-      case 1:
-        randomize();
-        break;
-      case 2:
-        boxShape();
-        break;
-    }
-  }
+ 
   
   void boxShape()
   {
@@ -127,7 +112,6 @@ class ColorBoard
     boardHeight = round(height / cellWidth);
     board = new float[boardHeight][boardWidth];
     nextBoard  = new float[boardHeight][boardWidth];
-    restart();
   }
   
   void updateBoard()
@@ -341,7 +325,7 @@ class ColorBoard
     }
 
 
-    void on(int row, int col)
+    void on(int col, int row)
     {
       board[row][col] = random(255);
     }
@@ -371,10 +355,6 @@ class ColorBoard
     }
     drawBoard();
 
-    if (generation == generationMax)
-    {
-      restart();
-    }
   }
 
   int countAround(int row, int col)

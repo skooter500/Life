@@ -43,17 +43,31 @@ void keyPressed()
   {
     board.makeGlider((int) cell.x, (int) cell.y);
   }
-  
-  if (keyCode == 'R')
+  /*
+  if (keyCode == '5')
   {
-      
-      board.randomise();
+    board.lines();
+  }
+  */
+  if (keyCode == '5')
+  {
+    board.boxShape();
+  }
+  
+  if (keyCode == '6')
+  {      
+      board.crossShape();
+  }
+  
+  if (keyCode == '7')
+  {      
+      board.randomize();
   }
   
   if (keyCode == 'C')
   {
       
-      lifeBoard.clear();
+      board.clearBoard();
   }
 }
 
@@ -67,5 +81,5 @@ void mouseDragged()
   int row = (int) map(mouseY, 0, height, 0, board.boardHeight-1);
   
   board.board[row][col] = random(255);
-  println(row + " " + col);
+  //println(row + " " + col);
 }
