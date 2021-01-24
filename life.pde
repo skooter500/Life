@@ -2,45 +2,70 @@ void setup()
 {
   //size(600, 600);
   fullScreen();
-  board = new ColourBoard(400);
+  board = new ColorBoard(1, 10000);
+  colorMode(HSB);
   frameRate(20);
 }
 
-ColourBoard board;
+ColorBoard board;
 void draw()
 {
   background(0);
   board.render();
-  board.update();
 }
 
 void keyPressed()
 {
-  if (key == ' ')
+  
+  PVector cell = board.screenToCell(mouseX, mouseY);
+    
+  if (keyCode == ' ')
   {
-    board.reset();
+    board.paused = ! board.paused;
   }
-  if (key == '1')
+  
+  if (keyCode == '1')
   {
-    board.randomise();
+    board.makeGosperGun((int) cell.x, (int) cell.y);
   }
-  if (key == '2')
+  
+  if (keyCode == '2')
   {
-    board.lines();
+    board.makeLightWeightSpaceShip((int) cell.x, (int) cell.y);
   }
-  if (key == '3')
+  
+  if (keyCode == '3')
   {
-    board.lines1();
+    board.makeTumbler((int) cell.x, (int) cell.y);
+  }
+  
+  if (keyCode == '4')
+  {
+    board.makeGlider((int) cell.x, (int) cell.y);
+  }
+  
+  if (keyCode == 'R')
+  {
+      
+      board.randomise();
+  }
+  
+  if (keyCode == 'C')
+  {
+      
+      lifeBoard.clear();
   }
 }
 
 void mouseDragged()
 {
-  if (mouseX >= width || mouseY >= height || mouseX < 0 || mouseY < 0)
+  /*if (mouseX >= width || mouseY >= height || mouseX < 0 || mouseY < 0)
   {
     return;
-  }
-  int col = (int) map(mouseX, 0, width, 0, board.size-1);
-  int row = (int) map(mouseY, 0, height, 0, board.size-1);
-  board.current[row][col] = board.RandomColor();
+  }*/
+  int col = (int) map(mouseX, 0, width, 0, board.boardWidth-1);
+  int row = (int) map(mouseY, 0, height, 0, board.boardHeight-1);
+  
+  board.board[row][col] = random(255);
+  println(row + " " + col);
 }
