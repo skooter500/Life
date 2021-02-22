@@ -77,8 +77,12 @@ void mouseDragged()
   {
     return;
   }*/
-  int col = (int) map(mouseX, 0, width, 0, board.boardWidth-1);
-  int row = (int) map(mouseY, 0, height, 0, board.boardHeight-1);
+  int col = (int) map(pmouseX, 0, width, 0, board.boardWidth-1);
+  int row = (int) map(pmouseY, 0, height, 0, board.boardHeight-1);
+  
+  board.board[row][col] = random(255);
+  col = (int) map(mouseX, 0, width, 0, board.boardWidth-1);
+  row = (int) map(mouseY, 0, height, 0, board.boardHeight-1);
   
   board.board[row][col] = random(255);
   //println(row + " " + col);
